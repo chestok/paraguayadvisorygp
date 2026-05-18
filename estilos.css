@@ -1,0 +1,72 @@
+/* Estilos globales y capas personalizadas */
+[x-cloak] { 
+  display: none !important; 
+}
+
+body {
+  background:
+    radial-gradient(circle at top, rgba(212, 175, 55, 0.08), transparent 18%),
+    linear-gradient(180deg, #121212 0%, #0a0a0a 100%);
+}
+
+.glass {
+  background: rgba(24, 24, 24, 0.78);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.gold-frame {
+  position: relative;
+  overflow: hidden;
+}
+
+.gold-frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(212,175,55,0.95), rgba(212,175,55,0.14), rgba(212,175,55,0.65));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.page-shell {
+  min-height: calc(100vh - 80px);
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+/* Estilos de WhatsApp Flotante */
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  z-index: 999;
+  transition: transform 0.3s ease;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+}
+
+.whatsapp-icon {
+  width: 30px;
+  height: 30px;
+}
