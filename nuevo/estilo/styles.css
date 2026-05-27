@@ -1,3 +1,6 @@
+/* ==========================================================================
+   VARIABLES Y CONFIGURACIÓN BASE
+   ========================================================================== */
 :root {
   --navy: #0b1f3a;
   --gold: #c9a34e;
@@ -34,19 +37,88 @@ a {
   color: inherit;
 }
 
+/* ==========================================================================
+   COMPONENTES REUTILIZABLES
+   ========================================================================== */
 .container {
   width: var(--container);
   margin-inline: auto;
 }
 
+.eyebrow,
+.section-tag {
+  color: var(--gold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+}
+
+h1,
+h2,
+.section-title,
+.value h2 {
+  font-family: 'Cormorant Garamond', serif;
+  line-height: 1.1;
+  font-weight: 600;
+}
+
+.section-title {
+  font-size: clamp(1.8rem, 3vw, 2.9rem);
+  max-width: 20ch;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 13rem;
+  padding: 0.8rem 1.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.8rem;
+  transition: transform 220ms ease, background-color 220ms ease, color 220ms ease;
+  border: 1px solid transparent;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-gold {
+  background: var(--gold);
+  color: var(--navy);
+}
+
+.btn-ghost {
+  border-color: rgba(255, 255, 255, 0.8);
+  color: var(--white);
+}
+
+/* EFECTOS DE REVELADO (SCROLL ANIMATION) */
+.reveal,
+.reveal-item {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 700ms ease, transform 700ms ease;
+}
+
+.reveal.is-visible,
+.reveal-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   HEADER & NAVEGACIÓN
+   ========================================================================== */
 .header {
   height: 80px;
-  position: fixed;    /* Cambiar a fixed */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
-  background: transparent; /* O el color que prefieras al inicio */
+  background: transparent;
   transition: all 0.3s ease;
 }
 
@@ -64,7 +136,6 @@ a {
   justify-content: space-between;
 }
 
-
 .brand {
   display: grid;
   gap: 0.05rem;
@@ -72,10 +143,10 @@ a {
 }
 
 .brand img {
-  height: 110px;   /* 👈 más grande visualmente */
+  height: 110px;
   width: auto;
   object-fit: contain;
-  transform: translateY(10px); /* ajusta centrado visual */
+  transform: translateY(10px);
 }
 
 .brand-main {
@@ -119,13 +190,13 @@ a {
 }
 
 .menu-toggle {
-  display: none; /* Se oculta en PC */
+  display: none;
   background: transparent;
   border: 0;
   cursor: pointer;
-  position: relative; /* Añadir esto */
-  z-index: 1100;      /* Asegurar que esté por encima de todo */
-  padding: 10px;      /* Área de click más grande */
+  position: relative;
+  z-index: 1100;
+  padding: 10px;
 }
 
 .menu-toggle span {
@@ -136,12 +207,13 @@ a {
   background: var(--white);
 }
 
-
+/* ==========================================================================
+   HERO SECTOR (SLIDER / VIDEO)
+   ========================================================================== */
 .hero {
   position: relative;
-  /* Esto asegura que ocupe el 100% del alto del dispositivo */
-  height: 100vh; 
-  height: 100dvh; /* Altura dinámica para corregir el salto de la barra de navegación en Chrome/Safari móvil */
+  height: 100vh;
+  height: 100dvh;
   width: 100%;
   overflow: hidden;
 }
@@ -162,9 +234,6 @@ a {
   background-position: center;
 }
 
-
-
-
 .hero-video {
   position: absolute;
   top: 0;
@@ -173,11 +242,9 @@ a {
   height: 100%;
   object-fit: cover;
   z-index: -2;
-
-  pointer-events: none; /* 🔥 CLAVE */
+  pointer-events: none;
 }
 
-/* OSCURECER */
 .overlay {
   position: absolute;
   inset: 0;
@@ -190,7 +257,6 @@ a {
   transform: scale(1);
 }
 
-
 .hero-content {
   position: relative;
   z-index: 1;
@@ -199,23 +265,6 @@ a {
   align-content: center;
   gap: 1rem;
   max-width: 730px;
-}
-
-.eyebrow,
-.section-tag {
-  color: var(--gold);
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  font-size: 0.78rem;
-}
-
-h1,
-h2,
-.section-title,
-.value h2 {
-  font-family: 'Cormorant Garamond', serif;
-  line-height: 1.1;
-  font-weight: 600;
 }
 
 h1,
@@ -233,33 +282,6 @@ h1,
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 13rem;
-  padding: 0.8rem 1.3rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 0.8rem;
-  transition: transform 220ms ease, background-color 220ms ease, color 220ms ease;
-  border: 1px solid transparent;
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-}
-
-.btn-gold {
-  background: var(--gold);
-  color: var(--navy);
-}
-
-.btn-ghost {
-  border-color: rgba(255, 255, 255, 0.8);
-  color: var(--white);
 }
 
 .slider-dots {
@@ -286,15 +308,11 @@ h1,
   border-color: var(--gold);
 }
 
-.services,
-.portfolio,
-.value {
+/* ==========================================================================
+   SECCIÓN SERVICIOS
+   ========================================================================== */
+.services {
   padding: clamp(4rem, 8vw, 7rem) 0;
-}
-
-.section-title {
-  font-size: clamp(1.8rem, 3vw, 2.9rem);
-  max-width: 20ch;
 }
 
 .services-grid {
@@ -333,61 +351,101 @@ h1,
   font-size: 0.92rem;
 }
 
+/* ==========================================================================
+   NUEVA GALERÍA PORTAFOLIO (7 IMÁGENES + 3 VIDEOS ASIMÉTRICOS)
+   ========================================================================== */
 .portfolio {
   background: #09172c;
+  padding: clamp(4rem, 8vw, 7rem) 0;
 }
 
 .masonry {
   margin-top: 2.2rem;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  grid-template-columns: repeat(3, 1fr); /* 3 Columnas base en escritorio */
+  gap: 1.2rem;
 }
 
 .item {
   position: relative;
   overflow: hidden;
-  min-height: 260px;
+  height: 320px; /* Altura unificada estándar */
   transition: transform 280ms ease;
+  border-radius: 2px;
 }
 
-.item img {
+.item img,
+.item video {
+  width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 420ms ease;
+  transition: transform 500ms ease;
 }
 
+/* Capa de degradado elegante */
 .item::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(11, 31, 58, 0.86), rgba(11, 31, 58, 0.15));
+  background: linear-gradient(to top, rgba(11, 31, 58, 0.9), rgba(11, 31, 58, 0.15));
   opacity: 0.9;
   z-index: 1;
+  pointer-events: none;
 }
 
 .item figcaption {
   position: absolute;
   z-index: 2;
-  left: 1rem;
-  bottom: 1rem;
+  left: 1.2rem;
+  bottom: 1.2rem;
   color: var(--white);
 }
 
-.item:hover img {
-  transform: scale(1.05);
+/* Hover effects globales para multimedia */
+.item:hover img,
+.item:hover video {
+  transform: scale(1.04);
 }
 
 .item:hover {
   transform: translateY(-4px);
 }
 
+/* Modificadores de tamaño para dinamismo en PC */
 .item.tall {
   grid-row: span 2;
+  height: 662px; /* Cálculo matemático: (320px * 2) + 22.4px (1.2rem de gap) */
 }
 
 .item.wide {
   grid-column: span 2;
+}
+
+/* Indicador visual sutil de reproducción para los videos */
+.item.video-item::after {
+  content: "▶";
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  background: rgba(11, 31, 58, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--white);
+  width: 32px;
+  height: 32px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   SECCIÓN VALORES / FOOTER / EXTRAS
+   ========================================================================== */
+.value {
+  padding: clamp(4rem, 8vw, 7rem) 0;
 }
 
 .value-content {
@@ -434,7 +492,7 @@ h1,
 }
 
 .footer-logo {
-  height: 180px;  /* 👈 aumentá acá */
+  height: 180px;
   width: auto;
   margin-bottom: 1rem;
 }
@@ -489,19 +547,6 @@ h1,
   transition: background-color 280ms ease, outline-color 280ms ease;
 }
 
-.reveal,
-.reveal-item {
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 700ms ease, transform 700ms ease;
-}
-
-.reveal.is-visible,
-.reveal-item.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 .whatsapp-float {
   position: fixed;
   bottom: 20px;
@@ -528,6 +573,10 @@ h1,
   height: 30px;
 }
 
+/* ==========================================================================
+   MEDIA QUERIES (RESPONSIVE DESIGN)
+   ========================================================================== */
+
 @media (max-width: 900px) {
   .hero,
   .hero-slider,
@@ -548,8 +597,19 @@ h1,
     grid-template-columns: repeat(2, 1fr);
   }
 
+  /* La Galería pasa a 2 columnas equilibradas en Tablets */
   .masonry {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .item {
+    height: 280px;
+  }
+
+  .item.tall {
+    grid-row: span 2;
+    height: 576px; /* Proporcional a la reducción */
   }
 
   .item.wide {
@@ -592,15 +652,22 @@ h1,
   }
 
   .services-grid,
-  .masonry,
   .footer-grid {
     grid-template-columns: 1fr;
   }
 
-  .item.wide,
-  .item.tall {
+  /* La Galería colapsa a 1 sola columna fluida en celulares */
+  .masonry {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .item, 
+  .item.tall, 
+  .item.wide {
     grid-row: auto;
     grid-column: auto;
+    height: 250px; /* Altura perfecta para manipulación táctil */
   }
 
   .whatsapp-float {
