@@ -19,6 +19,9 @@ const setHeaderState = () => {
 };
 
 const renderDots = () => {
+  if (!dotsContainer) return;
+  dotsContainer.innerHTML = ''; // 🧠 Optimización: Evita que los puntos se dupliquen al recargar
+  
   slides.forEach((_, index) => {
     const dot = document.createElement('button');
     dot.className = `dot ${index === 0 ? 'active' : ''}`;
@@ -32,12 +35,14 @@ const renderDots = () => {
 };
 
 const updateDots = (index) => {
+  if (!dotsContainer) return;
   Array.from(dotsContainer.children).forEach((dot, i) => {
     dot.classList.toggle('active', i === index);
   });
 };
 
 const goToSlide = (index) => {
+  if (!slides.length) return;
   slides[current].classList.remove('active');
   current = index;
   slides[current].classList.add('active');
@@ -47,6 +52,7 @@ const goToSlide = (index) => {
 const nextSlide = () => goToSlide((current + 1) % slides.length);
 
 const restartTimer = () => {
+  if (!slides.length) return;
   clearInterval(timer);
   timer = setInterval(nextSlide, 6200);
 };
@@ -116,20 +122,30 @@ window.addEventListener('load', () => {
   initRevealAnimations();
 });
 
+/* ==========================================================================
+   🔥 CAMBIO CLAVE: REFUERZO PARA TODOS LOS VIDEOS (HERO + GALERÍA)
+   ========================================================================== */
 document.addEventListener("DOMContentLoaded", () => {
-  const video = document.querySelector(".hero-video");
-  if (video) {
-    video.muted = true;
-    video.playsInline = true;
+  // Ahora seleccionamos TODOS los videos que haya en la página
+  const allVideos = document.querySelectorAll("video");
+  
+  if (allVideos.length > 0) {
+    allVideos.forEach((video) => {
+      video.muted = true;
+      video.playsInline = true;
+      video.loop = true; // Asegura el bucle infinito en la galería
 
-    const playVideo = () => {
-      video.play().catch(() => {});
-    };
+      const playVideo = () => {
+        video.play().catch(() => {
+          // Falla silenciosa si el navegador bloquea temporalmente
+        });
+      };
 
-    playVideo();
+      playVideo();
 
-    // refuerzo (por navegadores agresivos)
-    setTimeout(playVideo, 500);
-    setTimeout(playVideo, 1500);
+      // Ráfaga de seguridad para asegurar el arranque en Safari/Chrome móvil
+      setTimeout(playVideo, 400);
+      setTimeout(playVideo, 1200);
+    });
   }
 });
